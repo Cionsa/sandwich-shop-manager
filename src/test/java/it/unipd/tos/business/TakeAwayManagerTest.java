@@ -8,16 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-package it.unipd.tos.business;
-
-import it.unipd.tos.business.TakeAwayManager;
-import it.unipd.tos.business.exception.TakeAwayBillException;
-import it.unipd.tos.model.MenuItem;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.Assert.assertEquals;
 import org.junit.rules.ExpectedException;
 import org.junit.Rule;
 import org.junit.Test;
@@ -39,6 +29,7 @@ public class TakeAwayManagerTest{
             exc.getMessage();
         }
     }
+
 
     @Test
     public void Discount50PerCentLessExpensivePaninoWith5PlusPaninoOrder_Test() throws TakeAwayBillException{
@@ -64,6 +55,8 @@ public class TakeAwayManagerTest{
         }
     }
 
+     
+    
     @Test
     public void Discount10PercentWith50PlusEuroOrder_Test() throws TakeAwayBillException {
         List<MenuItem> itemsOrdered = new ArrayList<MenuItem>();
@@ -83,7 +76,7 @@ public class TakeAwayManagerTest{
             exc.getMessage();
         }
     }
-    
+
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
