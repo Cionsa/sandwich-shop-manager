@@ -8,6 +8,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+package it.unipd.tos.business;
+
+import it.unipd.tos.business.TakeAwayManager;
+import it.unipd.tos.business.exception.TakeAwayBillException;
+import it.unipd.tos.model.MenuItem;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+import org.junit.rules.ExpectedException;
+import org.junit.Rule;
 import org.junit.Test;
 
 public class TakeAwayManagerTest{
@@ -71,4 +83,21 @@ public class TakeAwayManagerTest{
             exc.getMessage();
         }
     }
+    
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
+
+    @Test
+    public void NumberElementsExceed30_Test() throws TakeAwayBillException {
+        List<MenuItem> itemsOrdered = new ArrayList<MenuItem>();
+        TakeAwayManager testBill = new TakeAwayManager();
+
+        thrown.expect(TakeAwayBillException.class);
+        thrown.expectMessage("Non ci possono essere più di 30 elementi nell'ordine");
+
+        for(int i = 1; i <= 40; i++)
+            itemsOrdered.add(new MenuItem("Panino primavera", MenuItem.items.Panino, 4.00));
+
+        testBill.getOrderPrice(itemsOrdered);
+    } 
 }

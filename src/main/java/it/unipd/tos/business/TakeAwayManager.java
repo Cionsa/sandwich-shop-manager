@@ -32,6 +32,10 @@ public class TakeAwayManager implements TakeAwayBill {
             }
         }
 
+        if(itemsOrdered.size() > 30){
+            throw new TakeAwayBillException("Non ci possono essere più di 30 elementi nell'ordine");
+        }
+
         if(nrPanini > 5){
             totalFood -= (paninoLessExpensive/2); 
         }
@@ -40,6 +44,6 @@ public class TakeAwayManager implements TakeAwayBill {
             totalFood -= (totalFood*0.1);
         }
 
-        return totalDrink +totalFood;
+        return totalDrink + totalFood;
     }
 }
